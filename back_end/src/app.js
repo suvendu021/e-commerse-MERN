@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import morgan from "morgan";
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(
 );
 
 app.use(cookieParser());
+
+app.use(morgan("dev"));
 
 app.use(express.json({ limit: "12kb" }));
 
