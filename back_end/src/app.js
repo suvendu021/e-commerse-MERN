@@ -20,4 +20,13 @@ app.use(express.urlencoded({ limit: "12kb", extended: true }));
 
 app.use(express.static("public"));
 
+app.get("/", (req, res) => {
+  res.send("server start");
+});
+
+//routes
+import { userRouter } from "./routes/user.router.js";
+
+app.use("/api/v1/user", userRouter);
+
 export { app };
