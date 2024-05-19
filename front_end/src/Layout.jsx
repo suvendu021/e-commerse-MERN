@@ -3,12 +3,20 @@
 import React from "react";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import { Helmet } from "react-helmet";
 
-const Layout = ({ Component }) => {
+const Layout = ({ Component, title, description, keywords }) => {
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={keywords} />
+        <meta name="author" content="Suvendu" />
+      </Helmet>
       <Header />
-      <main className="min-h-[900px] md:min-h-[600px]">
+      <main className="min-h-[780px] md:min-h-[600px]">
         <Component />
       </main>
       <Footer />
