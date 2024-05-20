@@ -6,7 +6,7 @@ import { BiShow } from "react-icons/bi";
 import { BiHide } from "react-icons/bi";
 import axios from "axios";
 import { BASEURL } from "../utils/Constant";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookie from "universal-cookie";
 import LoadingEffect from "../utils/LoadingEffect";
 
@@ -25,6 +25,7 @@ const LogIn = () => {
   const passwordRef = useRef(null);
   const phoneRef = useRef(null);
   const addressRef = useRef(null);
+  const answerRef = useRef(null);
 
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
@@ -95,8 +96,10 @@ const LogIn = () => {
           passWord: passwordRef?.current?.value,
           phone: phoneRef?.current?.value,
           address: addressRef?.current?.value,
+          securityAnswer: answerRef?.current?.value,
         });
         setErrorMSG("successfully account created, Click SignIn");
+        toast.success("successfully Account Created");
       } catch (error) {
         console.error("SignUp error:", error);
 
@@ -158,6 +161,14 @@ const LogIn = () => {
                 placeholder="eg: Odisha, India"
                 className="px-4 py-2 border border-gray-500 rounded-md"
               />
+              <label className="mt-2">Security quetion</label>
+              <input
+                ref={answerRef}
+                type="text"
+                required
+                placeholder="Enter your childhood name"
+                className="px-4 py-2 border border-gray-500 rounded-md"
+              />
             </>
           ) : null}
 
@@ -207,7 +218,9 @@ const LogIn = () => {
           </button>
           <p className="text-red-500 px-2 font-semibold">{errorMSG}</p>
           <div className="text-blue-500 flex font-mono font-semibold mt-4 justify-between px-2">
-            <p>Forgot Password?</p>
+            <p className="cursor-pointer">
+              <Link to={"/forgot-password"}>Forgot Password?</Link>
+            </p>
             <p className="cursor-pointer" onClick={signInBtnHandle}>
               {toggleSignIn ? "SignUp" : "SignIn"}
             </p>

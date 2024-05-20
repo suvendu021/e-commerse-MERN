@@ -2,6 +2,7 @@ import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
+import bcrypt from "bcrypt";
 
 //generate both accessToken and refreshToken
 const generateAccessTokenAndRefreshToken = async (userId) => {
@@ -20,9 +21,10 @@ const generateAccessTokenAndRefreshToken = async (userId) => {
 
 //register/sign up user
 const registerUser = AsyncHandler(async (req, res) => {
-  const { userName, email, passWord, phone, address } = req.body;
+  const { userName, email, passWord, phone, address, securityAnswer } =
+    req.body;
   if (
-    [userName, email, passWord, phone, address].some(
+    [userName, email, passWord, phone, address, securityAnswer].some(
       (field) => field?.trim() === ""
     )
   ) {
@@ -40,6 +42,7 @@ const registerUser = AsyncHandler(async (req, res) => {
     passWord,
     phone,
     address,
+    securityAnswer,
   });
 
   const createdUser = await User.findById(user._id).select(
@@ -118,6 +121,44 @@ const signOutUser = AsyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "successfully LogOut"));
 });
 
+//forgot password
+const forgotPassword = AsyncHandler(async (req, res) => {
+  const { email, securityAnswer, newPassWord } = req.body;
+
+  if (
+    [email, securityAnswer, newPassWord].some((field) => field.trim() === "")
+  ) {
+    throw new ApiError(400, "every field need to be filled");
+  }
+
+  const user = await User.findOne({ email });
+  if (!user) {
+    throw new ApiError(400, "Unauthorize request");
+  }
+
+  const isSecurityAnswerCorrect = user.isSecurityAnswerCorrect(securityAnswer);
+  if (!isSecurityAnswerCorrect) {
+    throw new ApiError(400, "incorrect answer");
+  }
+
+  const hashedNewPassword = await bcrypt.hash(newPassWord, 10);
+  await User.findByIdAndUpdate(
+    user._id,
+    {
+      $set: {
+        passWord: hashedNewPassword,
+      },
+    },
+    {
+      new: true,
+    }
+  );
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, "password successfully updated"));
+});
+
 //controller for testing
 const testing = AsyncHandler(async (req, res) => {
   const user = req.user;
@@ -126,4 +167,4 @@ const testing = AsyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "procected route achieved", user));
 });
 
-export { registerUser, signInUser, signOutUser, testing };
+export { registerUser, signInUser, signOutUser, testing, forgotPassword };

@@ -30,6 +30,7 @@ const userSchema = new mongoose.Schema(
     address: {
       type: String,
       required: true,
+      trim: true,
     },
     role: {
       type: Number,
@@ -38,6 +39,11 @@ const userSchema = new mongoose.Schema(
     refreshToken: {
       type: String,
       trim: true,
+    },
+    securityAnswer: {
+      type: String,
+      trim: true,
+      required: true,
     },
   },
   { timestamps: true }
@@ -51,6 +57,14 @@ userSchema.pre("save", async function (next) {
 
 userSchema.methods.isPassWordCorrect = async function (passWord) {
   return await bcrypt.compare(passWord, this.passWord);
+};
+
+userSchema.methods.isSecurityAnswerCorrect = function (answer) {
+  if (answer === this.securityAnswer) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 userSchema.methods.generateAccessToken = function () {

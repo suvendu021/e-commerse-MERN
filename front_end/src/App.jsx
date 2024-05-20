@@ -11,6 +11,7 @@ import ErrorPage from "./components/utils/ErrorPage";
 import { Toaster } from "react-hot-toast";
 import AdminPanel from "./components/body/AdminPanel";
 import { ProtectedRoute } from "./components/utils/ProtectedRoute";
+import ForgotPassword from "./components/body/ForgotPassword";
 
 const App = () => {
   const appRouter = createBrowserRouter([
@@ -72,6 +73,18 @@ const App = () => {
         />
       ),
       path: "/cart",
+      errorElement: <Layout Component={ErrorPage} />,
+    },
+    {
+      element: (
+        <Layout
+          Component={ForgotPassword}
+          title={`H & B - forgot password`}
+          description={`password reset based on question`}
+          keywords={`reset password`}
+        />
+      ),
+      path: "/forgot-password",
       errorElement: <Layout Component={ErrorPage} />,
     },
     {
