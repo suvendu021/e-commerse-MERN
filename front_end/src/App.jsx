@@ -9,6 +9,8 @@ import Cart from "./components/cart/Cart";
 import LogIn from "./components/body/LogIn";
 import ErrorPage from "./components/utils/ErrorPage";
 import { Toaster } from "react-hot-toast";
+import AdminPanel from "./components/body/AdminPanel";
+import { ProtectedRoute } from "./components/utils/ProtectedRoute";
 
 const App = () => {
   const appRouter = createBrowserRouter([
@@ -70,6 +72,22 @@ const App = () => {
         />
       ),
       path: "/cart",
+      errorElement: <Layout Component={ErrorPage} />,
+    },
+    {
+      element: (
+        <ProtectedRoute
+          Component={() => (
+            <Layout
+              Component={AdminPanel}
+              title="Admin Panel"
+              description="Admin Panel for H & B"
+              keywords="H & B admin, management"
+            />
+          )}
+        />
+      ),
+      path: "/admin-panel",
       errorElement: <Layout Component={ErrorPage} />,
     },
   ]);

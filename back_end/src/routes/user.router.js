@@ -11,7 +11,7 @@ const userRouter = Router();
 
 userRouter.route("/register-user").post(registerUser);
 userRouter.route("/login-user").post(signInUser);
-userRouter.route("/logout-user").post(signOutUser);
+userRouter.route("/logout-user").post(verifyJWT, signOutUser);
 
 //route for testing
 userRouter.route("/test").get(verifyJWT, isAdmin, testing);

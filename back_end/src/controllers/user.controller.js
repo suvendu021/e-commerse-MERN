@@ -93,7 +93,30 @@ const signInUser = AsyncHandler(async (req, res) => {
 });
 
 //logout user
-const signOutUser = AsyncHandler(async (req, res) => {});
+const signOutUser = AsyncHandler(async (req, res) => {
+  const user = req.user;
+  await User.findByIdAndUpdate(
+    user._id,
+    {
+      $unset: {
+        refreshToken: 1,
+      },
+    },
+    {
+      new: true,
+    }
+  );
+
+  const options = {
+    httpOnly: true,
+    secure: true,
+  };
+  return res
+    .status(200)
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(new ApiResponse(200, "successfully LogOut"));
+});
 
 //controller for testing
 const testing = AsyncHandler(async (req, res) => {

@@ -16,7 +16,7 @@ const Layout = ({ Component, title, description, keywords }) => {
         <meta name="author" content="Suvendu" />
       </Helmet>
       <Header />
-      <main className="min-h-[780px] md:min-h-[600px]">
+      <main className="min-h-[780px] md:min-h-[600px] mb-12">
         <Component />
       </main>
       <Footer />
