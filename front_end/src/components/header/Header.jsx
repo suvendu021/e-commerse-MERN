@@ -51,8 +51,8 @@ const Header = () => {
   // }, []);
 
   return (
-    <div className="flex bg-white z-40 w-full px-4 py-2 justify-between items-center shadow-lg sticky top-0">
-      <p className="font-serif font-bold text-2xl">H & B</p>
+    <div className="flex bg-white z-40 w-full justify-between px-4 py-2 items-center shadow-lg sticky top-0">
+      <div className="font-serif font-bold text-2xl">H & B</div>
       <div>
         <div className="md:hidden">
           {showMenu ? (
@@ -76,23 +76,10 @@ const Header = () => {
           )}
         </div>
         <ul
-          className={`block md:flex items-center md:space-x-8 font-semibold ${
+          className={`block  whitespace-nowrap md:flex items-center md:space-x-8 font-semibold ${
             showMenu ? "hidden" : ""
           }`}
         >
-          {userName && (
-            <li className="flex items-center">
-              <FaRegUserCircle size={22} className="mr-1" />
-              {userName}
-            </li>
-          )}
-
-          {userName && (
-            <li className="flex cursor-pointer" onClick={handleLogOut}>
-              LogOut
-            </li>
-          )}
-
           <li>
             <Link className="focus:text-gray-400" to={"/"}>
               {!userName ? "SignUp" : ""}
@@ -123,6 +110,19 @@ const Header = () => {
               <Link className="focus:text-gray-400" to={"/admin-panel"}>
                 AdminPanel
               </Link>
+            </li>
+          )}
+
+          {userName && (
+            <li className="flex items-center">
+              <FaRegUserCircle size={22} className="mr-1" />
+              {userName}
+            </li>
+          )}
+
+          {userName && (
+            <li className="flex cursor-pointer" onClick={handleLogOut}>
+              LogOut
             </li>
           )}
         </ul>
