@@ -159,6 +159,25 @@ const forgotPassword = AsyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "password successfully updated"));
 });
 
+//get all users
+const getAllusers = AsyncHandler(async (req, res) => {
+  const allUsers = await User.find().select(
+    "-passWord -refreshToken -role -securityAnswer"
+  );
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        "successfully get all users info",
+        allUsers ? allUsers : "no users found"
+      )
+    );
+});
+
+//update user info
+const updateUserInfo = AsyncHandler(async (req, res) => {});
+
 //controller for testing
 const testing = AsyncHandler(async (req, res) => {
   const user = req.user;
@@ -167,4 +186,11 @@ const testing = AsyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "procected route achieved", user));
 });
 
-export { registerUser, signInUser, signOutUser, testing, forgotPassword };
+export {
+  registerUser,
+  signInUser,
+  signOutUser,
+  testing,
+  forgotPassword,
+  getAllusers,
+};

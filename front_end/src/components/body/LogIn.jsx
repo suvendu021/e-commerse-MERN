@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { Validation } from "../utils/Validation";
 import { BiShow } from "react-icons/bi";
@@ -12,6 +12,12 @@ import LoadingEffect from "../utils/LoadingEffect";
 
 const LogIn = () => {
   const navigate = useNavigate();
+  const user = localStorage.getItem("username");
+
+  useEffect(() => {
+    user && navigate("/home");
+  });
+
   const cookie = new Cookie();
   const [toggleSignIn, setToggleSignIn] = useState(true);
   const [showPassword, setShowPassword] = useState(false);

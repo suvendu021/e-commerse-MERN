@@ -107,7 +107,7 @@ const Header = () => {
           </li>
           {role == 1 && (
             <li>
-              <Link className="focus:text-gray-400" to={"/admin-panel"}>
+              <Link className="focus:text-gray-400" to={"/admin-panel/admin"}>
                 AdminPanel
               </Link>
             </li>

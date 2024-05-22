@@ -3,6 +3,6 @@ import { createCategory } from "../controllers/category.controller.js";
 
 const categoryRouter = Router();
 
-categoryRouter.route("/create-product").post(createCategory);
+categoryRouter.route("/create-category").post(createCategory);
 
 export { categoryRouter };

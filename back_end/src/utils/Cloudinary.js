@@ -14,7 +14,7 @@ const uploadToCloudinary = async (photoPath) => {
       return null;
     }
     const uploadedPhoto = await cloudinary.uploader.upload(photoPath, {
-      resource_type: "image",
+      resource_type: "auto",
     });
     fs.unlinkSync(photoPath);
     return uploadedPhoto;

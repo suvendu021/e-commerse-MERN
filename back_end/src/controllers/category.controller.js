@@ -10,24 +10,26 @@ const createCategory = AsyncHandler(async (req, res) => {
     throw new ApiError(400, "please name the category");
   }
 
-  const presentCategory = await Category.findOne({ categogyName });
+  const presentCategory = await Category.findOne({
+    categoryName: categoryName,
+  });
   if (presentCategory) {
     throw new ApiError(400, "category already exist");
   }
 
   const createdCategory = await Category.create({
-    categogyName: categoryName,
+    categoryName,
   });
 
   if (!createdCategory) {
     throw new ApiError(500, "some error occur during creation of category");
   }
 
-  const category = Category.findById(createdCategory._id);
+  const category = await Category.findById(createdCategory._id);
 
   return res
     .status(200)
-    .json(new ApiResponse(200, "successfully category created"), category);
+    .json(new ApiResponse(200, "successfully category created", category));
 });
 
 export { createCategory };

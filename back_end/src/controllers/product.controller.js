@@ -7,13 +7,15 @@ import { Category } from "../models/category.model.js";
 
 // create product
 const createProduct = AsyncHandler(async (req, res) => {
-  const { productName, price, category } = req.body;
+  const { productName, price, categoryName } = req.body;
 
-  if ([productName, price, category].some((field) => field.trim() === "")) {
+  if (
+    [productName, price, categoryName].some((field) => field?.trim() === "")
+  ) {
     return new ApiError(400, "every field need to be filled");
   }
 
-  const CategoryPresent = Category.findOne({ categogyName: category });
+  const CategoryPresent = await Category.findOne({ categoryName });
   if (!CategoryPresent) {
     throw new ApiError(
       400,
@@ -24,7 +26,7 @@ const createProduct = AsyncHandler(async (req, res) => {
   const categoryId = CategoryPresent._id;
 
   const ProductPresent = await Product.findOne({
-    $and: [{ productName }, { category }],
+    $and: [{ productName }, { categoryId }],
   });
   if (ProductPresent) {
     throw new ApiError(400, "product is already present");
@@ -42,9 +44,9 @@ const createProduct = AsyncHandler(async (req, res) => {
   }
 
   const createdProduct = await Product.create({
-    productName: productName,
-    price: price,
-    categoryId: categoryId,
+    productName,
+    price,
+    categoryId,
     productPhoto: result.url,
   });
 
@@ -52,11 +54,26 @@ const createProduct = AsyncHandler(async (req, res) => {
     throw new ApiError(500, "some error occur during creating product");
   }
 
-  const product = await Product.findById(createProduct._id);
+  const product = await Product.findById(createdProduct._id);
 
   return res
     .status(200)
     .json(new ApiResponse(200, "successfully product created ", product));
 });
 
-export { createProduct };
+//get all products
+const getAllProducts = AsyncHandler(async (req, res) => {
+  const allProducts = await Product.find();
+
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        "successfully get all products",
+        allProducts ? allProducts : "no product found"
+      )
+    );
+});
+
+export { createProduct, getAllProducts };

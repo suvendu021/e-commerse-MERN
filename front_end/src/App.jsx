@@ -12,6 +12,10 @@ import { Toaster } from "react-hot-toast";
 import AdminPanel from "./components/body/AdminPanel";
 import { ProtectedRoute } from "./components/utils/ProtectedRoute";
 import ForgotPassword from "./components/body/ForgotPassword";
+import Product from "./components/body/Product";
+import Category from "./components/body/Category";
+import AdminInfo from "./components/body/AdminInfo";
+import UsersDetail from "./components/body/UsersDetail";
 
 const App = () => {
   const appRouter = createBrowserRouter([
@@ -101,6 +105,25 @@ const App = () => {
         />
       ),
       path: "/admin-panel",
+
+      children: [
+        {
+          element: <Product />,
+          path: "/admin-panel/product",
+        },
+        {
+          element: <Category />,
+          path: "/admin-panel/category",
+        },
+        {
+          element: <UsersDetail />,
+          path: "/admin-panel/users",
+        },
+        {
+          element: <AdminInfo />,
+          path: "/admin-panel/admin",
+        },
+      ],
       errorElement: <Layout Component={ErrorPage} />,
     },
   ]);
