@@ -7,18 +7,16 @@ import { BiHide } from "react-icons/bi";
 import axios from "axios";
 import { BASEURL } from "../utils/Constant";
 import { Link, useNavigate } from "react-router-dom";
-import Cookie from "universal-cookie";
+import Cookies from "universal-cookie";
 import LoadingEffect from "../utils/LoadingEffect";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const user = localStorage.getItem("username");
-
+  const cookie = new Cookies();
+  const accessToken = cookie.get("accessToken");
   useEffect(() => {
-    user && navigate("/home");
+    accessToken && navigate("/home");
   });
-
-  const cookie = new Cookie();
   const [toggleSignIn, setToggleSignIn] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [errorMSG, setErrorMSG] = useState(null);
@@ -70,10 +68,20 @@ const LogIn = () => {
         const accessToken = data?.data?.accessToken;
         const user_name = data?.data?.loginUser?.userName;
         const role = data?.data?.loginUser?.role;
-        console.log(role);
-        cookie.set("accessToken", accessToken);
+        // console.log(role);
+        const expires = new Date();
+        expires.setDate(expires.getDate() + 2);
+        cookie.set("accessToken", accessToken, { path: "/", expires });
         localStorage.setItem("username", user_name);
         localStorage.setItem("role", role);
+        const logInUserData = {
+          userName: data?.data?.loginUser?.userName,
+          email: data?.data?.loginUser?.email,
+          phone: data?.data?.loginUser?.phone,
+          address: data?.data?.loginUser?.address,
+        };
+        const userInfo = JSON.stringify(logInUserData);
+        localStorage.setItem("userInfo", userInfo);
         toast.success("successfully login");
       } catch (error) {
         console.error("Login error:", error);

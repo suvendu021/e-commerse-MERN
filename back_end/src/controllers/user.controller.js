@@ -162,7 +162,7 @@ const forgotPassword = AsyncHandler(async (req, res) => {
 //get all users
 const getAllusers = AsyncHandler(async (req, res) => {
   const allUsers = await User.find().select(
-    "-passWord -refreshToken -role -securityAnswer"
+    "-passWord -refreshToken  -securityAnswer"
   );
   return res
     .status(200)

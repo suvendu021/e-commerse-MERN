@@ -2,7 +2,10 @@
 import React from "react";
 
 const AdminInfo = () => {
-  return <div>AdminInfo</div>;
+  const admin = localStorage.getItem("userInfo");
+  const adminInfo = JSON.parse(admin);
+  console.log(adminInfo);
+  return <div>hello</div>;
 };
 
 export default AdminInfo;

@@ -7,7 +7,7 @@ const AdminPanel = () => {
   return (
     <>
       <div className="flex">
-        <div className="w-3/12 fixed space-y-2 border shadow ">
+        <div className="w-3/12 fixed space-y-2 border shadow bg-slate-100">
           <div className="px-4 py-3 border-b border-black ">
             <Link className="cursor-pointer" to={"/admin-panel/admin"}>
               Admin
