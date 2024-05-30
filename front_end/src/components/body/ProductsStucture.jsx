@@ -7,7 +7,7 @@ const ProductsStucture = ({ productData }) => {
   const product_photo = productData?.productPhoto;
   const product_price = productData?.price;
   return (
-    <div className="w-fit px-4 py-2 mt-6  shadow-md bg-slate-100 rounded-md">
+    <div className="w-fit px-6 py-4 mt-6  shadow-md bg-slate-100 rounded-md">
       <img className="w-32" src={`${product_photo}`} alt="product_photo" />
       <div className="mt-2">
         <div className="font-mono md:text-base text-sm">{`${product_name}`}</div>

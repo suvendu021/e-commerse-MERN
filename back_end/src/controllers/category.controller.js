@@ -32,4 +32,18 @@ const createCategory = AsyncHandler(async (req, res) => {
     .json(new ApiResponse(200, "successfully category created", category));
 });
 
-export { createCategory };
+//get all category
+const getAllCategories = AsyncHandler(async (req, res) => {
+  const allCategories = await Category.find();
+  return res
+    .status(200)
+    .json(
+      new ApiResponse(
+        200,
+        "successfully get all categories",
+        allCategories ? allCategories : "no category found"
+      )
+    );
+});
+
+export { createCategory, getAllCategories };

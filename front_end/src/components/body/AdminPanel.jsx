@@ -7,24 +7,36 @@ const AdminPanel = () => {
   return (
     <>
       <div className="flex">
-        <div className="w-3/12 fixed space-y-2 border shadow bg-slate-100">
+        <div className="w-3/12 fixed space-y-2 border shadow bg-slate-100 font-semibold ">
           <div className="px-4 py-3 border-b border-black ">
-            <Link className="cursor-pointer" to={"/admin-panel/admin"}>
+            <Link
+              className="cursor-pointer focus:text-red-400"
+              to={"/admin-panel/admin"}
+            >
               Admin
             </Link>
           </div>
           <div className="px-4 py-3 border-b border-black ">
-            <Link className="cursor-pointer" to={"/admin-panel/users"}>
+            <Link
+              className="cursor-pointer focus:text-red-400"
+              to={"/admin-panel/users"}
+            >
               Users
             </Link>
           </div>
           <div className="px-4 py-3 border-b cursor-pointer border-black">
-            <Link className="cursor-pointer" to={"/admin-panel/category"}>
+            <Link
+              className="cursor-pointer focus:text-red-400"
+              to={"/admin-panel/category"}
+            >
               Category
             </Link>
           </div>
           <div className="px-4 py-3 border-b border-black ">
-            <Link className="cursor-pointer" to={"/admin-panel/product"}>
+            <Link
+              className="cursor-pointer focus:text-red-400"
+              to={"/admin-panel/product"}
+            >
               Products
             </Link>
           </div>

@@ -8,7 +8,7 @@ const UserInfoStructure = ({ userData }) => {
   const phone = userData?.phone;
   const role = userData?.role;
   return (
-    <div className="w-fit mt-5 py-2 px-4  font-mono shadow-md bg-slate-100 rounded-md">
+    <div className="w-fit mt-5 py-6 px-4  font-mono shadow-md bg-slate-100  rounded-lg ">
       <div className="font-semibold  text-xl whitespace-nowrap">{`UserName:-${userName}`}</div>
       <div className="md:text-base text-sm whitespace-nowrap ">{`Phone No:-${phone}`}</div>
       <div className="md:text-base text-sm whitespace-nowrap ">{`Email:-${email}`}</div>
