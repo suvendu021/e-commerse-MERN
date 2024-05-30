@@ -10,11 +10,19 @@ const Product = () => {
   // if (products) console.log(products);
   if (!products) return null;
   return (
-    <div className="md:grid ml-14 md:grid-cols-3 md:gap-10">
-      {products.map((product) => (
-        <ProductsStucture key={product._id} productData={product} />
-      ))}
-    </div>
+    <>
+      <div className="flex justify-center">
+        <button className="bg-black text-white px-4 py-2 rounded-lg mt-[7%]">
+          + Create Product
+        </button>
+      </div>
+      <div className="my-2 mx-2 text-xl font-semibold ">{`Total No. of Products: ${products.length}`}</div>
+      <div className="md:grid justify-items-center md:grid-cols-3 md:gap-10">
+        {products.map((product) => (
+          <ProductsStucture key={product._id} productData={product} />
+        ))}
+      </div>
+    </>
   );
 };
 

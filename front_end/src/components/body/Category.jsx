@@ -8,7 +8,7 @@ import { BASEURL } from "../utils/Constant";
 import { toast } from "react-hot-toast";
 
 const Category = () => {
-  const [catagoryData, setCategoryData] = useState(null);
+  const [catagoryData, setCategoryData] = useState([]);
   const categoriesInfo = useFetchAllCategories();
   useEffect(() => {
     if (categoriesInfo) {
@@ -50,8 +50,8 @@ const Category = () => {
           Create
         </button>
       </div>
-
-      <div className=" md:grid grid-cols-4  mt-20 ">
+      <div className=" mt-12 text-xl font-semibold ">{`Total No. of Categories: ${catagoryData.length}`}</div>
+      <div className=" md:grid grid-cols-3 justify-items-center  mt-20 ">
         {catagoryData &&
           catagoryData.map((category) => (
             <CategoryStructure key={category._id} category={category} />

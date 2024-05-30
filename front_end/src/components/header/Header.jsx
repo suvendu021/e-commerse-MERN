@@ -84,47 +84,53 @@ const Header = () => {
           }`}
         >
           <li>
-            <Link className="focus:text-gray-400" to={"/"}>
+            <Link className="focus:text-gray-400 py-2 " to={"/"}>
               {!accessToken ? "SignUp" : ""}
             </Link>
           </li>
           <li>
-            <Link className="focus:text-gray-400" to={"/home"}>
+            <Link className="focus:text-gray-400 py-2 " to={"/home"}>
               Home
             </Link>
           </li>
           <li>
-            <Link className="focus:text-gray-400" to={"/contact"}>
+            <Link className="focus:text-gray-400 py-2 " to={"/contact"}>
               Contact us
             </Link>
           </li>
           <li>
-            <Link className="focus:text-gray-400" to={"/about"}>
+            <Link className="focus:text-gray-400 py-2 " to={"/about"}>
               About us
             </Link>
           </li>
           <li>
-            <Link className="focus:text-gray-400" to={"/cart"}>
+            <Link className="focus:text-gray-400 py-2 " to={"/cart"}>
               Cart
             </Link>
           </li>
           {role == 1 && accessToken && (
             <li>
-              <Link className="focus:text-gray-400" to={"/admin-panel/admin"}>
+              <Link
+                className="focus:text-gray-400 py-2 "
+                to={"/admin-panel/admin"}
+              >
                 AdminPanel
               </Link>
             </li>
           )}
 
           {accessToken && (
-            <li className="flex items-center">
+            <li className="flex items-center py-2 ">
               <FaRegUserCircle size={22} className="mr-1" />
               {userName}
             </li>
           )}
 
           {accessToken && (
-            <li className="flex cursor-pointer" onClick={handleLogOut}>
+            <li
+              className="flex rounded-lg bg-black text-white px-3 py-2 cursor-pointer"
+              onClick={handleLogOut}
+            >
               LogOut
             </li>
           )}

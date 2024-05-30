@@ -9,11 +9,14 @@ const UsersDetail = () => {
   // if (usersArray) console.log(usersArray);
   if (!usersArray) return null;
   return (
-    <div className="md:grid md:gap-5 md:grid-cols-3">
-      {usersArray.map((user) => (
-        <UserInfoStructure key={user._id} userData={user} />
-      ))}
-    </div>
+    <>
+      <div className=" mt-12 text-xl font-semibold ">{`Total No. of Users: ${usersArray.length}`}</div>
+      <div className="md:grid md:gap-5 md:grid-cols-2 justify-items-center">
+        {usersArray.map((user) => (
+          <UserInfoStructure key={user._id} userData={user} />
+        ))}
+      </div>
+    </>
   );
 };
 
