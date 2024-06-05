@@ -10,8 +10,8 @@ const ProductsStucture = ({ productData }) => {
     <div className="w-fit px-6 py-4 mt-6  shadow-md bg-slate-100 rounded-md">
       <img className="w-32" src={`${product_photo}`} alt="product_photo" />
       <div className="mt-2">
-        <div className="font-mono md:text-base text-sm">{`${product_name}`}</div>
-        <div className="font-mono md:text-base text-sm">{`Rs:-${product_price}`}</div>
+        <div className="text-lg font-bold">{`${product_name}`}</div>
+        <div className="font-semibold">{`Price:-${product_price} rs/-`}</div>
       </div>
     </div>
   );

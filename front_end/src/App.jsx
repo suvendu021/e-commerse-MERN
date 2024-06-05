@@ -16,6 +16,9 @@ import Product from "./components/body/Product";
 import Category from "./components/body/Category";
 import AdminInfo from "./components/body/AdminInfo";
 import UsersDetail from "./components/body/UsersDetail";
+import CreateProduct from "./components/body/CreateProduct";
+import Orders from "./components/body/Orders";
+import EditProduct from "./components/body/EditProduct";
 
 const App = () => {
   const appRouter = createBrowserRouter([
@@ -122,6 +125,18 @@ const App = () => {
         {
           element: <AdminInfo />,
           path: "/admin-panel/admin",
+        },
+        {
+          element: <CreateProduct />,
+          path: "/admin-panel/product/create-product",
+        },
+        {
+          element: <Orders />,
+          path: "/admin-panel/orders",
+        },
+        {
+          element: <EditProduct />,
+          path: "/admin-panel/product/product-edit/:productId",
         },
       ],
       errorElement: <Layout Component={ErrorPage} />,

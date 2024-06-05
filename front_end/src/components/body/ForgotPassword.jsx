@@ -63,7 +63,7 @@ const ForgotPassword = () => {
             placeholder="Enter your childhood name"
             className="px-4 py-2 border border-gray-500 rounded-md"
           />
-          <label className="mt-2">Password</label>
+          <label className="mt-2">New Password</label>
           <div className="flex justify-end items-center">
             <input
               ref={newPasswordRef}

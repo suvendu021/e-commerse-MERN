@@ -12,7 +12,7 @@ const createProduct = AsyncHandler(async (req, res) => {
   if (
     [productName, price, categoryName].some((field) => field?.trim() === "")
   ) {
-    return new ApiError(400, "every field need to be filled");
+    throw new ApiError(400, "every field need to be filled");
   }
 
   const CategoryPresent = await Category.findOne({ categoryName });

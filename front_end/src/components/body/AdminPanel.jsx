@@ -10,7 +10,7 @@ const AdminPanel = () => {
         <div className="w-3/12 fixed space-y-2 border shadow bg-slate-100 font-semibold ">
           <div className="px-4 py-3 border-b border-black ">
             <Link
-              className="cursor-pointer focus:text-red-400"
+              className="cursor-pointer focus:text-red-500"
               to={"/admin-panel/admin"}
             >
               Admin
@@ -18,7 +18,7 @@ const AdminPanel = () => {
           </div>
           <div className="px-4 py-3 border-b border-black ">
             <Link
-              className="cursor-pointer focus:text-red-400"
+              className="cursor-pointer focus:text-red-500"
               to={"/admin-panel/users"}
             >
               Users
@@ -26,7 +26,7 @@ const AdminPanel = () => {
           </div>
           <div className="px-4 py-3 border-b cursor-pointer border-black">
             <Link
-              className="cursor-pointer focus:text-red-400"
+              className="cursor-pointer focus:text-red-500"
               to={"/admin-panel/category"}
             >
               Category
@@ -34,10 +34,18 @@ const AdminPanel = () => {
           </div>
           <div className="px-4 py-3 border-b border-black ">
             <Link
-              className="cursor-pointer focus:text-red-400"
+              className="cursor-pointer focus:text-red-500"
               to={"/admin-panel/product"}
             >
               Products
+            </Link>
+          </div>
+          <div className="px-4 py-3 border-b border-black ">
+            <Link
+              className="cursor-pointer focus:text-red-500 "
+              to={"/admin-panel/orders"}
+            >
+              Orders
             </Link>
           </div>
         </div>
